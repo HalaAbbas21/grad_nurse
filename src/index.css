@@ -1,0 +1,81 @@
+@import "./styles/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    color: var(--foreground);
+    font-family: "Tajawal", "Nunito", system-ui, sans-serif;
+    min-height: 100vh;
+    /* Surface gradient: subtle blue glow top-start + yellow glow top-end over #F9FDFF */
+    background-color: var(--background);
+    background-image:
+      radial-gradient(60rem 40rem at 12% -8%, oklch(0.92 0.06 240 / 0.55), transparent 60%),
+      radial-gradient(55rem 38rem at 92% -6%, oklch(0.95 0.09 95 / 0.5), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Quicksand", "Tajawal", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* RTL content uses Tajawal for headings */
+  [lang="ar"] h1,
+  [lang="ar"] h2,
+  [lang="ar"] h3,
+  [lang="ar"] h4 {
+    font-family: "Tajawal", system-ui, sans-serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Hide scrollbar for horizontal chip rows but keep scrollable */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Simple skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+.animate-shimmer {
+  animation: shimmer 1.4s ease-in-out infinite;
+}
